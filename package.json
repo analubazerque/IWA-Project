@@ -1,7 +1,7 @@
 {
-  "name": "ca1-in-class-demo",
+  "name": "iwa-project",
   "version": "1.0.0",
-  "description": "CA1 in-class demo",
+  "description": "forked from CA1 in-class demo",
   "main": "app.js",
   "scripts": {
     "test": "test"
@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/analubazerque/IWA-Project/issues"
   },
-  "homepage": "https://github.com/analubazerque/IWA-Project#readme"
+  "homepage": "https://github.com/analubazerque/IWA-Project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "node.js": "0.0.0",
+    "nodemon": "^2.0.1",
+    "path": "^0.12.7",
+    "xml2js": "^0.4.22",
+    "xslt-processor": "^0.11.5"
+  }
 }

@@ -117,5 +117,9 @@
       <item>Cabbage</item>
       <price>1.00</price>
     </entree>
+    <entree>
+      <item>Cucumber</item>
+      <price>1.00</price>
+    </entree>
   </section>
 </shoppinglist>

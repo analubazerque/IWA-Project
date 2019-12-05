@@ -9,26 +9,18 @@ var http = require('http'), //This module provides the HTTP server functionaliti
 var router = express(); //The set our routing to be handled by Express
 var server = http.createServer(router); //This is where our server gets created
 
-// Function to read in XML file and convert it to JSON
-function xmlFileToJs(filename, cb) {
-  var filepath = path.normalize(path.join(__dirname, filename));
-  fs.readFile(filepath, 'utf8', function(err, xmlStr) {
-    if (err) throw (err);
-    xml2js.parseString(xmlStr, {}, cb);
-  });
-}
-
-//Function to convert JSON to XML and save it
-function jsToXmlFile(filename, obj, cb) {
-  var filepath = path.normalize(path.join(__dirname, filename));
-  var builder = new xml2js.Builder();
-  var xml = builder.buildObject(obj);
-  fs.writeFile(filepath, xml, cb);
-}
 router.use(express.static(path.resolve(__dirname, 'views'))); //We define the views folder as the one where all static content will be served
 router.use(express.urlencoded({extended: true})); //We allow the data sent from the client to be coming in as part of the URL in GET and POST requests
 router.use(express.json()); //We include support for JSON that is coming from the client
 
+//Function to convert JSON to XML and save it
+function jsToXmlFile(filename, obj, cb) {
+  var filepath = path.normalize(path.join(__dirname, filename));
+  var builder = new xml2js.Builder();
+  var xml = builder.buildObject(obj);
+  fs.writeFile(filepath, xml, cb);
+}
+
 // Function to read in XML file and convert it to JSON
 function xmlFileToJs(filename, cb) {
   var filepath = path.normalize(path.join(__dirname, filename));
@@ -38,13 +30,6 @@ function xmlFileToJs(filename, cb) {
   });
 }
 
-//Function to convert JSON to XML and save it
-function jsToXmlFile(filename, obj, cb) {
-  var filepath = path.normalize(path.join(__dirname, filename));
-  var builder = new xml2js.Builder();
-  var xml = builder.buildObject(obj);
-  fs.writeFile(filepath, xml, cb);
-}
 //We define the root of our website and render index.html located inside the views folder
 router.get('/', function(req, res){
 
@@ -55,13 +40,14 @@ router.get('/', function(req, res){
 router.get('/get/html', function(req, res) {
 
     res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
-
-    var result = xsltProcess(doc, stylesheet); //Execute Transformation
-
+    
     var xml = fs.readFileSync('ShoppingList.xml', 'utf8');
     var xsl = fs.readFileSync('ShoppingList.xsl', 'utf8');
     var doc = xmlParse(xml);
     var stylesheet = xmlParse(xsl);
+
+    var result = xsltProcess(doc, stylesheet); //Execute Transformation
+
     res.end(result.toString()); //We render the result back to the user converting it to a string before serving
 
 });
@@ -72,12 +58,12 @@ router.post('/post/delete', function(req, res) {
   // Function to read in a JSON file, add to it & convert to XML
   function deleteJSON(obj) {
     // Function to read in XML file, convert it to JSON, delete the required object and write back to XML file
-    xmlFileToJs('PaddysCafe.xml', function(err, result) {
+    xmlFileToJs('ShoppingList.xml', function(err, result) {
       if (err) throw (err);
       //This is where we delete the object based on the position of the section and position of the entree, as being passed on from index.html
-      delete result.cafemenu.section[obj.section].entree[obj.entree];
+      delete result.shoppinglist.section[obj.section].entree[obj.entree];
       //This is where we convert from JSON and write back our XML file
-      jsToXmlFile('PaddysCafe.xml', result, function(err) {
+      jsToXmlFile('ShoppingList.xml', result, function(err) {
         if (err) console.log(err);
       })
     })
