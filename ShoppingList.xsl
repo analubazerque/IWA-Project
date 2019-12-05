@@ -3,7 +3,7 @@
     <xsl:template match="/">
     <html>
     <head>
-    <script src="ShoppingListCode.js"></script>
+    <script src="js/ShoppingListCode.js"></script>
     <script>
     
         window.addEventListener("load", function() {
