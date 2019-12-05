@@ -1,0 +1,19 @@
+{
+  "name": "ca1-in-class-demo",
+  "version": "1.0.0",
+  "description": "CA1 in-class demo",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/analubazerque/IWA-Project.git"
+  },
+  "author": "Ana Bazerque",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/analubazerque/IWA-Project/issues"
+  },
+  "homepage": "https://github.com/analubazerque/IWA-Project#readme"
+}
