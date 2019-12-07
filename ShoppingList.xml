@@ -121,5 +121,9 @@
       <item>Cucumber</item>
       <price>1.00</price>
     </entree>
+    <entree>
+      <item>Chia</item>
+      <price>0.99</price>
+    </entree>
   </section>
 </shoppinglist>

@@ -44,7 +44,7 @@ function delete_row(sec, ent)
 				entree: ent
 			},
 			cache: false,
-			success: setTimeout(draw_table, 1000)
+			success: setTimeout(draw_table, 2000)
 		})
 	})
 };
