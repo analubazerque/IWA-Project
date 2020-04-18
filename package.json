@@ -4,7 +4,7 @@
   "description": "forked from CA1 in-class demo",
   "main": "app.js",
   "scripts": {
-    "test": "test"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
